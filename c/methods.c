@@ -1129,7 +1129,8 @@ void clInitMethods __P((void))
                                  CONS_0,
                                  clNIL,
                                  clT,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetq(CL_gf,
              clMakeFuncallableStandardInstanceFromSlots(CL_meta,
                                                         L_1,
@@ -1165,7 +1166,8 @@ void clInitMethods __P((void))
                                  CL_gf,
                                  clNIL,
                                  clNIL,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetq(CL_method,
              clMakeStandardInstanceFromSlots(CL_meta, L_1, L_2)); }
     { clObject L_g407, L_g408;
@@ -1214,7 +1216,8 @@ void clInitMethods __P((void))
                                  CONS_9,
                                  clNIL,
                                  clT,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetq(CL_gf,
              clMakeFuncallableStandardInstanceFromSlots(CL_meta,
                                                         L_1,
@@ -1254,7 +1257,8 @@ void clInitMethods __P((void))
                                  CL_gf,
                                  clNIL,
                                  clNIL,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetq(CL_method,
              clMakeStandardInstanceFromSlots(CL_meta, L_1, L_2)); }
     { clObject L_g422, L_g423;
@@ -1323,7 +1327,8 @@ void clInitMethods __P((void))
                                  CONS_12,
                                  clNIL,
                                  clT,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetq(CL_gf,
              clMakeFuncallableStandardInstanceFromSlots(CL_meta,
                                                         L_1,
@@ -1362,7 +1367,8 @@ void clInitMethods __P((void))
                                  CL_gf,
                                  clNIL,
                                  clNIL,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetq(CL_method,
              clMakeStandardInstanceFromSlots(CL_meta, L_1, L_2)); }
     { clObject L_g445, L_g446;
@@ -1421,7 +1427,8 @@ void clInitMethods __P((void))
                                  CONS_12,
                                  clNIL,
                                  clT,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetq(CL_gf,
              clMakeFuncallableStandardInstanceFromSlots(CL_meta,
                                                         L_1,
@@ -1460,7 +1467,8 @@ void clInitMethods __P((void))
                                  CL_gf,
                                  clNIL,
                                  clNIL,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetq(CL_method,
              clMakeStandardInstanceFromSlots(CL_meta, L_1, L_2)); }
     { clObject L_g466, L_g467;
@@ -1519,7 +1527,8 @@ void clInitMethods __P((void))
                                  CONS_13,
                                  clNIL,
                                  clT,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetq(CL_gf,
              clMakeFuncallableStandardInstanceFromSlots(CL_meta,
                                                         L_1,
@@ -1558,7 +1567,8 @@ void clInitMethods __P((void))
                                  CL_gf,
                                  clNIL,
                                  clNIL,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetq(CL_method,
              clMakeStandardInstanceFromSlots(CL_meta, L_1, L_2)); }
     { clObject L_g497, L_g498;
@@ -1617,7 +1627,8 @@ void clInitMethods __P((void))
                                  CONS_13,
                                  clNIL,
                                  clT,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetq(CL_gf,
              clMakeFuncallableStandardInstanceFromSlots(CL_meta,
                                                         L_1,
@@ -1656,7 +1667,8 @@ void clInitMethods __P((void))
                                  CL_gf,
                                  clNIL,
                                  clNIL,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetq(CL_method,
              clMakeStandardInstanceFromSlots(CL_meta, L_1, L_2)); }
     { clObject L_g526, L_g527;
@@ -1715,7 +1727,8 @@ void clInitMethods __P((void))
                                  CONS_15,
                                  clNIL,
                                  clT,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetq(CL_gf,
              clMakeFuncallableStandardInstanceFromSlots(CL_meta,
                                                         L_1,
@@ -1751,7 +1764,8 @@ void clInitMethods __P((void))
                                  CL_gf,
                                  clNIL,
                                  clNIL,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetq(CL_method,
              clMakeStandardInstanceFromSlots(CL_meta, L_1, L_2)); }
     { clObject L_g540, L_g541;
@@ -1799,7 +1813,8 @@ void clInitMethods __P((void))
                                  CL_gf,
                                  clNIL,
                                  CONS_24,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetq(CL_method,
              clMakeStandardInstanceFromSlots(CL_meta, L_1, L_2)); }
     { clObject L_g556, L_g557;
@@ -1847,7 +1862,8 @@ void clInitMethods __P((void))
                                  CL_gf,
                                  clNIL,
                                  CONS_31,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetq(CL_method,
              clMakeStandardInstanceFromSlots(CL_meta, L_1, L_2)); }
     { clObject L_g566, L_g567;
@@ -1895,7 +1911,8 @@ void clInitMethods __P((void))
                                  CL_gf,
                                  clNIL,
                                  CONS_31,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetq(CL_method,
              clMakeStandardInstanceFromSlots(CL_meta, L_1, L_2)); }
     { clObject L_g581, L_g582;

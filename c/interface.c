@@ -1206,7 +1206,7 @@ clObject clUnixTime() {
    (such as microseconds).  We cut them back to something more reasonable,
    like milliseconds. */
 
-#if (defined sun)		/* Sun uses gettimeofday with microsecond values. */
+#if (defined sun || emscripten)		/* Sun uses gettimeofday with microsecond values. */
 #  define clHZ		1000
 #  define Millisec(timeval) \
      (((long) timeval.tv_sec*1000) + ((long) timeval.tv_usec/1000))
@@ -1618,9 +1618,15 @@ char *clFollowLink(path) clObject path; {
 #if (defined USE_POSIX_OPENDIR)
 typedef struct {
   clObject path;
-  DIR dir;
+  DIR *dir;
 } cl_DIR;
-#  define cl_opendir(ns)	opendir(ns)
+static cl_DIR *cl_opendir __P((char *ns)) {
+    cl_DIR *dd = (cl_DIR *) GC_malloc_atomic(sizeof(cl_DIR));
+    dd->dir = opendir(ns);
+    return dd;
+}
+
+
 #  define cl_closedir(dd)	closedir(dd->dir)
 #  define cl_readdir(dd)	readdir(dd->dir)
 
@@ -2785,7 +2791,7 @@ clObject clMakeRatio(n, d) clObject n, d; {
 
 /* Used for defining round(), below.
    Note that tru might be too big to be an int. */
-#if !(defined sun)
+#if !(defined sun || defined emscripten)
 double remainder __P((double, double));
 double remainder(x, y) double x, y; {
   double thresh = fabs(y)/2.0,

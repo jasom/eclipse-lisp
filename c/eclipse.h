@@ -201,7 +201,7 @@
 #define clCeil(n, d)		(1 + (((n)-1) / (d)))
 
 /* Systems which do not define _setjmp/_longjmp... */
-#if (defined sysV68) || (defined Solaris) || (defined _WIN32)
+#if (defined sysV68) || (defined Solaris) || (defined _WIN32) ||(defined emscripten)
 #  define _setjmp(buf)		setjmp(buf)
 #  define _longjmp(buf, val)	longjmp(buf, val)
 #endif
@@ -352,6 +352,9 @@ typedef const char *clCharp;	/* (char *) in an easy to Lisp form */
 #endif
 
 #ifdef cl_CTYPECHECKS
+typedef struct clStandardInstanceCell clStandardInstanceCell;
+typedef struct clWrapperCell clWrapperCell;
+typedef struct clSymbolCell clSymbolCell;
    typedef union {
      union clObjectCell *address;
      clPointerTagCell	tag;
@@ -364,7 +367,7 @@ typedef const char *clCharp;	/* (char *) in an easy to Lisp form */
 #  define clSetq(obj_var, val) 	_clSetq(&(obj_var), (val))
    clObject _clSetq __P((clObject *, clObject)),
      clWordObject __P((clWord)),
-     clAddressObject __P((clObjectCell *)),
+     clAddressObject __P((union clObjectCell *)),
      clStandardInstancepObject __P((clStandardInstanceCell *)),
      clWrapperpObject __P((clWrapperCell *)),
      clSymbolpObject __P((clSymbolCell *)); 
@@ -679,7 +682,7 @@ int clXintInt(clProto);
  *     a wrapper (clObject).
  */
 
-typedef struct {
+typedef struct clWrapperCell {
   clIndex 	hash_key;
   clObject 	obsolete_slots;
 }			clWrapperCell;
@@ -725,8 +728,8 @@ typedef struct {
    clTaggedInstanceWrapper(obj) : cl_POINTER_TAGGED_WRAPPERS[clObjectPointerIndex(obj)])
 
 #ifdef cl_ECLIPSE_DEFINITIONS
-  clObject cl_POINTER_TAGGED_CLASSES[cl_MAX_TAG];
-  clObject cl_POINTER_TAGGED_WRAPPERS[cl_MAX_TAG];
+  clObject cl_POINTER_TAGGED_CLASSES[cl_MAX_TAG+1];
+  clObject cl_POINTER_TAGGED_WRAPPERS[cl_MAX_TAG+1];
 #else
   extern clObject cl_POINTER_TAGGED_CLASSES[];
   extern clObject cl_POINTER_TAGGED_WRAPPERS[];

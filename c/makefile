@@ -1,10 +1,10 @@
-CC=gcc
+CC=clang
 # gcc-wflags=-Wall -Wno-unused -Wshadow -Wwrite-strings \
 #  -Wnested-externs -Winline -Wpointer-arith -Wcast-qual \
 #   -pedantic -Waggregate-return -Wstrict-prototypes -Wconversion 
 
 #-Wredundant-decls -Wcast-align -Wbad-function-cast -W 
-pflags=$(gcc-wflags)
+#pflags=$(gcc-wflags)
 # We expect pflags to be defined in ENV if necessary.  It provides a
 # place to put platform-specific switches, such as (see eclipse.h):
 #    export pflags="-malign-double -DALIGN_DOUBLE"
@@ -122,7 +122,7 @@ character.o character.ln: chars.h
 # The LIBDL hair is to handle broken dl library name on HP.
 eclipse: $(l).a $(l)d.a  eclipse.o  $(user-objects)
 	if [ `uname -s` = "HP-UX" ]; then LIBDL=dld; else LIBDL=dl; fi; \
-	$(CC) $(CFLAGS) $(LDFLAGS) -L. eclipse.o -o eclipse $(user-objects) -leclipse -leclipsed -lm -l$$LIBDL -lgc
+	$(CC) $(CFLAGS) $(LDFLAGS) -L. eclipse.o -o eclipse $(user-objects) -leclipse -leclipsed -lm -l$$LIBDL gc.c -Wl,-Map=eclipse.map
 
 # See bottom of file for alternatives that don't keep .o files lying around.
 $(l).a: $(objects) $(static-objects) 
@@ -323,6 +323,8 @@ clean-all: clean clean-c clean-bin
 # ADDITIONAL RULES
 #########################################################################
 # This is not defined on some platforms (Motorola).
+%.i : %.c
+	$(CC) $(CFLAGS) -E $< > $@
 .c.ln: eclipse.h
 	$(LINT.c) $(OUTPUT_OPTION) $(ADDITIONAL_LINTFLAGS) $<
 

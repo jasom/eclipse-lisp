@@ -2,7 +2,7 @@
 #  define __STDC_VERSION__ 1	/* claims conformance, but isn't */
 #endif
 
-#if (defined __STDC_VERSION__) && __STDC_VERSION__ == 199409L 
+#if EMSCRIPTEN || (defined __STDC_VERSION__) && __STDC_VERSION__ == 199409L 
 #  if (defined hpux)
 #    include <wchar.h>		/* wrong ANSI header file */
 #else

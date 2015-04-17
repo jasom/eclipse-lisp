@@ -2312,7 +2312,8 @@ void clInitClasses __P((void))
                                  clT,
                                  CL_wrapper,
                                  clNIL,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetStandardInstanceSlots(CL_class, L_1); }
     cl_SETF_FindType(CL_class, clT, clEOA);
     (void) CL_class; }
@@ -2354,7 +2355,8 @@ void clInitClasses __P((void))
                                  clT,
                                  CL_wrapper,
                                  clNIL,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetStandardInstanceSlots(CL_class, L_1); }
     { clObject L_g406;
       clSetq(L_g406,
@@ -2542,7 +2544,8 @@ void clInitClasses __P((void))
                                  clNIL,
                                  CL_wrapper,
                                  clNIL,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetStandardInstanceSlots(CL_class, L_1); }
     { clObject L_g430;
       clSetq(L_g430,
@@ -2591,7 +2594,8 @@ void clInitClasses __P((void))
                                  clT,
                                  CL_wrapper,
                                  clNIL,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetStandardInstanceSlots(CL_class, L_1); }
     { clObject L_g436;
       clSetq(L_g436,
@@ -2642,7 +2646,8 @@ void clInitClasses __P((void))
                                  clT,
                                  CL_wrapper,
                                  clNIL,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetStandardInstanceSlots(CL_class, L_1); }
     { clObject L_g442;
       clSetq(L_g442,
@@ -2693,7 +2698,8 @@ void clInitClasses __P((void))
                                  clNIL,
                                  CL_wrapper,
                                  clNIL,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetStandardInstanceSlots(CL_class, L_1); }
     { clObject L_g448;
       clSetq(L_g448,
@@ -2744,7 +2750,8 @@ void clInitClasses __P((void))
                                  clNIL,
                                  CL_wrapper,
                                  clNIL,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetStandardInstanceSlots(CL_class, L_1); }
     { clObject L_g454;
       clSetq(L_g454,
@@ -2795,7 +2802,8 @@ void clInitClasses __P((void))
                                  clT,
                                  CL_wrapper,
                                  clNIL,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetStandardInstanceSlots(CL_class, L_1); }
     { clObject L_g460;
       clSetq(L_g460,
@@ -2846,7 +2854,8 @@ void clInitClasses __P((void))
                                  clNIL,
                                  CL_wrapper,
                                  clNIL,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetStandardInstanceSlots(CL_class, L_1); }
     { clObject L_g466;
       clSetq(L_g466,
@@ -2897,7 +2906,8 @@ void clInitClasses __P((void))
                                  clNIL,
                                  CL_wrapper,
                                  clNIL,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetStandardInstanceSlots(CL_class, L_1); }
     { clObject L_g472;
       clSetq(L_g472,
@@ -2946,7 +2956,8 @@ void clInitClasses __P((void))
                                  clT,
                                  CL_wrapper,
                                  clNIL,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetStandardInstanceSlots(CL_class, L_1); }
     { clObject L_g478;
       clSetq(L_g478,
@@ -2993,7 +3004,8 @@ void clInitClasses __P((void))
                                  clT,
                                  CL_wrapper,
                                  clNIL,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetStandardInstanceSlots(CL_class, L_1); }
     { clObject L_g484;
       clSetq(L_g484,
@@ -3045,7 +3057,8 @@ void clInitClasses __P((void))
                                  clNIL,
                                  CL_wrapper,
                                  clNIL,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetStandardInstanceSlots(CL_class, L_1); }
     { clObject L_g490;
       clSetq(L_g490,
@@ -3108,7 +3121,8 @@ void clInitClasses __P((void))
                                  clNIL,
                                  CL_wrapper,
                                  clNIL,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetStandardInstanceSlots(CL_class, L_1); }
     { clObject L_g498;
       clSetq(L_g498,
@@ -3163,7 +3177,8 @@ void clInitClasses __P((void))
                                  clNIL,
                                  CL_wrapper,
                                  clNIL,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetStandardInstanceSlots(CL_class, L_1); }
     { clObject L_g504;
       clSetq(L_g504,
@@ -3214,7 +3229,8 @@ void clInitClasses __P((void))
                                  clT,
                                  CL_wrapper,
                                  clNIL,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetStandardInstanceSlots(CL_class, L_1); }
     { clObject L_g510;
       clSetq(L_g510,
