@@ -61,7 +61,9 @@
 /* No systems currently define USE_POSIX_OPENDIR */
 #if !(defined USE_POSIX_OPENDIR)
 #  if (defined linux)
-/* #    include <linux/dirent.h>	/* getdents */
+#     if 0
+#       include <linux/dirent.h>	/* getdents */
+#     endif
 #define dirent linux_dirent
           struct linux_dirent {
                unsigned long  d_ino;     /* Inode number */
@@ -130,7 +132,8 @@ extern clObject clAddPkg(clProto), clAddXint(clProto),
   clPutf(clProto), clResizeHashTable(clProto),
   clSetInterrupt(clProto), clSimpleStringP(clProto),
   clSubtXint(clProto), clUpdateInstancesIfNeeded(clProto),
-  clXintDoubleFloat(clProto), clXintInteger(clProto);
+  clXintDoubleFloat(clProto), clXintInteger(clProto),
+  clWarn(clProto);
 
 /*******************************************************************
  * Functions used before definition in this file.
@@ -239,7 +242,7 @@ clObject clGcData __P((void)), clUnixTime __P((void)),
   clMakeRatio  __P((clObject, clObject)),
   clMakeComplex  __P((clObject, clObject)),
   clSetFuncallableStandardInstanceFunction __P((clObject, clObject)),
-  clStringEq __P((clObject, clObject, clObject)),
+  clStringEq (clProto),
   clEmfTableGet __P((clObject, clObject, clObject)),
   clMakeStandardInstanceFromSlots __P((clObject, clObject, clObject)),
   clMakeFuncallableStandardInstanceFromSlots __P((clObject, clObject, clObject)),
@@ -488,7 +491,7 @@ clBinding clMakeBinding() {
    check for cl_MULTIPLE_VALUES_LIMIT-1. */
 
 #define GetEm(args, ii)					\
-  clObject args[cl_CALL_ARGUMENTS_LIMIT+1]; unsigned short ii = 0;	\
+  clObject args[cl_CALL_ARGUMENTS_LIMIT+1] = {0}; unsigned short ii = 0;	\
   va_list _ap; clVaStart(_ap);				\
   if (InitFillEm(_ap, args, ii))			\
     while (FillEm(_ap, args, ii))			\
@@ -1232,7 +1235,9 @@ static long sys_time(start) long start; {
   return(Millisec(tp) - start); 
 }
 #elif (defined USE_POSIX_TIMES)	/* POSIX uses times with CLK_TCK values. */
-/*#  define clHZ		CLK_TCK		/* or HZ */
+#  if 0
+#    define clHZ		CLK_TCK		/* or HZ */
+#  endif
 #define clHZ   sysconf(_SC_CLK_TCK)
 
 static long sys_time(start) long start; {
@@ -2235,8 +2240,10 @@ int _clStringEq(x, y) clObject x, y; {
   }
   return(1);
 }
-clObject clStringEq(x, y, eoa) clObject x, y, eoa; {
-  clIgnore(eoa); return(clValues1(clTest(_clStringEq(x, y))));
+clObject clStringEq(clVaAlist) clVaDcl
+{
+  clObject x,y; TwoArgs(x, y);
+  return(clValues1(clTest(_clStringEq(x, y))));
 }
 
 #define clWithOpenAddressKey(hasher,test, table, index, key, keys, empty, removed, found) \
@@ -2644,7 +2651,7 @@ clObject clLogcountFixnum(f) clObject f; {
 #define Signp(l) 		( (l) & ~( (~ ((unsigned int) 0) ) >> 1) )
 
 clObject clLengthFixnum(f) clObject f; {
-  int l = clFixnumInt(f), count = (sizeof(int) * CHAR_BIT); 
+  unsigned int l = (unsigned) clFixnumInt(f), count = (sizeof(int) * CHAR_BIT); 
   if (Signp(l)) l = ~l;
   if (!l) return(clIntFixnum(0));
   while (!Signp(l)) {count--; l <<= 1;}
@@ -2783,7 +2790,9 @@ clObject clMakeRatio(n, d) clObject n, d; {
 #endif
 
 #if !(defined SunOS4)
-#  define signbit(x) ((x) < 0.0 )
+#  if !(defined signbit)
+#    define signbit(x) ((x) < 0.0 )
+#  endif
    /* modf() could also be used. */
    double aint __P((double));
    double aint (x) double x; { return ( signbit(x) ? ceil(x) : floor(x) ); }
@@ -2854,7 +2863,7 @@ clObject clDoubleSingleFloat(f) double f;
 
 /* This is really what we want, but there is no way to have it work in
    both traditional and ANSI C, unless separate libraries are used. */
-clObject clFloatSingleFloat(f) float f;
+clObject clFloatSingleFloat(float f)
 { clObject obj;
   clSetq(obj, clMakeTaggedInstance(sizeof(clSingleFloatCell), clSINGLE_FLOAT));
   clSingleFloatFloat(obj) = f;
@@ -3121,9 +3130,10 @@ clObject clScaleFloatDoubleFloatInteger(ff, ii) clObject ff, ii;
    change when the compiler gets smarter anyway.
    The same applies to SingleFloatFloater. */
 #define DoubleFloatFloater(name,t1)	\
-clObject clPaste3(name,t1,DoubleFloat) __P((clObject, clObject, clObject));	\
-clObject clPaste3(name,t1,DoubleFloat)(f1, f2, eoa) clObject f1, f2, eoa;	\
-{ clIgnore(f2); clIgnore(eoa);					\
+clObject clPaste3(name,t1,DoubleFloat) (clProto);	\
+clObject clPaste3(name,t1,DoubleFloat) (clVaAlist) clVaDcl \
+{  clObject f1, f2; \
+  _TwoArgs(f1, f2); \
   return(clValues1(clDoubleDoubleFloat(clPaste3(cl,t1,Double)(f1)))); }
 
 DoubleFloatFloater(clFloat2,Integer)
@@ -3131,9 +3141,10 @@ DoubleFloatFloater(clFloat2,Ratio)
 DoubleFloatFloater(clFloat2,SingleFloat)
 
 #define SingleFloatFloater(name,t1)	\
-clObject clPaste3(name,t1,SingleFloat) __P((clObject, clObject, clObject));	\
-clObject clPaste3(name,t1,SingleFloat)(f1, f2, eoa) clObject f1, f2, eoa;	\
-{ clIgnore(f2); clIgnore(eoa);					\
+clObject clPaste3(name,t1,SingleFloat) (clProto);	\
+clObject clPaste3(name,t1,SingleFloat) (clVaAlist) clVaDcl \
+{  clObject f1, f2; \
+  _TwoArgs(f1, f2); \
   return(clValues1(clDoubleSingleFloat(clPaste3(cl,t1,Double)(f1)))); }
 SingleFloatFloater(clFloat2,Integer)
 SingleFloatFloater(clFloat2,Ratio)

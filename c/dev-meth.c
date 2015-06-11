@@ -406,7 +406,8 @@ void clInitDevMeth __P((void))
                                  CL_gf,
                                  clNIL,
                                  clNIL,
-                                 clNIL)); }
+                                 clNIL,
+                                 clEOA)); }
       clSetq(CL_method,
              clMakeStandardInstanceFromSlots(CL_meta, L_1, L_2)); }
     { clObject L_g409, L_g410;

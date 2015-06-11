@@ -1,4 +1,4 @@
-CC=clang
+CC?=clang
 # gcc-wflags=-Wall -Wno-unused -Wshadow -Wwrite-strings \
 #  -Wnested-externs -Winline -Wpointer-arith -Wcast-qual \
 #   -pedantic -Waggregate-return -Wstrict-prototypes -Wconversion 
@@ -122,7 +122,11 @@ character.o character.ln: chars.h
 # The LIBDL hair is to handle broken dl library name on HP.
 eclipse: $(l).a $(l)d.a  eclipse.o  $(user-objects)
 	if [ `uname -s` = "HP-UX" ]; then LIBDL=dld; else LIBDL=dl; fi; \
-	$(CC) $(CFLAGS) $(LDFLAGS) -L. eclipse.o -o eclipse $(user-objects) -leclipse -leclipsed -lm -l$$LIBDL gc.c -Wl,-Map=eclipse.map
+	$(CC) $(CFLAGS) $(LDFLAGS) -L. eclipse.o -o eclipse $(user-objects) -leclipse -leclipsed -lm -l$$LIBDL -lgc -Wl,-Map=eclipse.map
+
+eclipse.nogc: $(l).a $(l)d.a  eclipse.o  $(user-objects)
+	if [ `uname -s` = "HP-UX" ]; then LIBDL=dld; else LIBDL=dl; fi; \
+	    $(CC) $(CFLAGS) $(LDFLAGS) -L. eclipse.o -o eclipse.nogc $(user-objects) -leclipse -leclipsed -lm -l$$LIBDL gc.c -Wl,-Map=eclipse.map
 
 # See bottom of file for alternatives that don't keep .o files lying around.
 $(l).a: $(objects) $(static-objects) 

@@ -101,11 +101,11 @@ clObject cl_SETF_FindClass clVdecl(_ap)
     { clObject L_2;
       clSetq(L_2, environment);
       clSetq(type, clFindType(symbol, clNIL, L_2, clEOA)); }
-    if (clTrue(type))
+    if (clTrue(type)) {
       if (clTrue(clDerivedTypeP(type, clEOA)))
         clCerror(STRn_2, STRn_3, symbol, clEOA);
       else if (clTrue(clAbstractStructureClassP(type, clEOA)))
-        clCerror(STRn_4, STRn_5, symbol, clEOA); }
+        clCerror(STRn_4, STRn_5, symbol, clEOA); } }
   { clObject L_arg895, L_arg896;
     clSetq(L_arg895, errorp);
     clSetq(L_arg896, environment);

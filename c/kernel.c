@@ -669,13 +669,13 @@ clObject clMap1 clVdecl(_ap)
             clSetq(x, clCar(L_0, clEOA)); }
           goto l_ITERATE484; }
         clBlockEnd(NIL);
-        if (clTrue(L_test))
+        if (clTrue(L_test)) {
           if (clTrue(accumulate))
             return(clCdr(ret_list, clEOA));
           else
             { clObject L_0;
               clSetq(L_0, original_arglists);
-              return(clCar(L_0, clEOA)); } }
+              return(clCar(L_0, clEOA)); } } }
       { clObject l;
         clSetq(l, arglists);
         clLabel(l_ITERATE485);

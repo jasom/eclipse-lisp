@@ -201,7 +201,7 @@
 #define clCeil(n, d)		(1 + (((n)-1) / (d)))
 
 /* Systems which do not define _setjmp/_longjmp... */
-#if (defined sysV68) || (defined Solaris) || (defined _WIN32) ||(defined emscripten)
+#if (defined sysV68) || (defined Solaris) || (defined _WIN32) ||(defined EMSCRIPTEN)
 #  define _setjmp(buf)		setjmp(buf)
 #  define _longjmp(buf, val)	longjmp(buf, val)
 #endif
@@ -277,7 +277,7 @@ typedef enum {
 /* Without the cast, Microsoft compilers break when n_bits is an 
    expression involving the sizeof operator, and the result is 
    inverted (~) and compared (<=) to an int. */
-#define clBitMask(n_bits) 	(~(~0 << ((int) n_bits)))
+#define clBitMask(n_bits) 	((int)(~(~0u << ((int) n_bits))))
 #define cl_TAG_MASK		clBitMask(cl_POINTER_TAG_BITS)
 
 typedef long clWord;		/* Integer big enough to hold a pointer */
@@ -451,7 +451,7 @@ typedef clObject *	clSlots;
 
 /* Note that how these are done can depend on type.  Ex. whether shift
    is logical or arithmetic (sign extending) */
-#define clToImmediate(val, tag)		clWordObject((clWord) ((val) << 2) | tag)
+#define clToImmediate(val, tag)		clWordObject((clWord) (((unsigned)(val)) << 2) | tag)
 #define clFromImmediate(immed, type)	(((type) clObjectWord(immed)) >> 2)
 
 /*********************************************************************
@@ -3313,6 +3313,11 @@ clObject clSymbolValue(clProto), clFdefinition(clProto),
 #    define Describe(thing) describe("thing", thing, 0)
 #  endif
    int describe __P((const char *, clObject, int));
+#endif
+
+#ifdef EMSCRIPTEN
+#include "eclipse2.h"
+#include "allprotos.h"
 #endif
 
 #endif				/* cl_ECLIPSE */

@@ -2,7 +2,7 @@
    Tuesday the twenty-sixth of May, 1998, 3:08:43 pm CDT. */
 #include <eclipse.h>
 
-clObject clSubtIntegerInteger(clProto), clLtIntegerInteger(clProto);
+clObject clSubtIntegerInteger(clObject,clObject), clLtIntegerInteger(clObject,clObject);
 clObject cl1MINUS_FUNC(clProto),
   clAddIntegerInteger __P((clObject, clObject)),
   clAdjustedLambdaBindings(clProto), clAppend(clProto),

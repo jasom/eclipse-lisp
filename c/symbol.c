@@ -97,7 +97,7 @@ clObject clRemprop clVdecl(_ap)
           { clObject L_0;
             clSetq(L_0, clCar(L_local402, clEOA));
             clSetq(L_test__R1, clEq(L_0, L_ind_temp401, clEOA)); }
-          if (clTrue(L_test__R1))
+          if (clTrue(L_test__R1)) {
             if (clTrue(L_local403))
               { { clObject L_0;
                   clSetq(L_0, clCdr(L_local403, clEOA));
@@ -110,7 +110,7 @@ clObject clRemprop clVdecl(_ap)
                 { clObject L_1;
                   clSetq(L_1, L_value399);
                   clSetSymbolPlist(L_arg400, L_1); }
-                return(clValues1(clT)); } }
+                return(clValues1(clT)); } } }
       { clObject L_value405, L_value406;
         clSetq(L_value405, clCddr(L_local402, clEOA));
         clSetq(L_value406, L_local402);
