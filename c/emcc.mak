@@ -326,10 +326,12 @@ clean-all: clean clean-c clean-bin
 # ADDITIONAL RULES
 #########################################################################
 # This is not defined on some platforms (Motorola).
-%.i: %.c
-	$(CC) $(CFLAGS) -E $< > $@
 .c.ln: eclipse.h
 	$(LINT.c) $(OUTPUT_OPTION) $(ADDITIONAL_LINTFLAGS) $<
+%.i: %.c
+	$(CC) $(CFLAGS) -E $< > $@
+%.o: %.c
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 #########################################################################
 # ALTERNATIVE APPROACHES
